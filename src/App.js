@@ -1,6 +1,5 @@
 import React,{ useRef, useState } from 'react';
 import './App.css';
-
 import CreateUser from './CreateUser';
 import UserList from './UserList';
 
@@ -15,28 +14,31 @@ function App() {
 
   const { username, email } = inputs;
 
-  const onChange = e =>{
+  const onChange = e => {
     const{ name, value } = e.target;
     setInputs({
       ...inputs,
-      [name] : value
+      [name]: value
     });
   };
-  const [users,setUsers] = useState([
+  const [users, setUsers] = useState([
       {
           id:1,
           username: 'anhyunjin',
-          email: 'a01020813765@gmail.com'
+          email: 'a01020813765@gmail.com',
+          active: true,
       },
       {
           id:2,
           username: 'hohohoho',
-          email: 'hohohoho@gmail.com'
+          email: 'hohohoho@gmail.com',
+          active:false,
       },
       {
           id:3,
           username: 'asdslf',
-          email: 'dfsgdsg@gmail.com'
+          email: 'dfsgdsg@gmail.com',
+          active:false,
       },
   ]);
   
@@ -46,20 +48,31 @@ function App() {
   const onCreate = () => {
     const user = {
       id: nextId.current,
-      ...inputs,
+      username,
+      email,
     };
     setUsers([users.concat(user)]);
     setInputs({
       username:'',
       email:''
     });
+    
     nextId.current += 1;
-    console.log(user);
   };
 
   const onRemove = id => {
     setUsers(users.filter(user => user.id !== id))
   };
+
+  const onToggle = id => {
+    setUsers(users.map(
+      user => user.id === id
+      ? {...user,active: !user.active}
+      : user
+    ));
+  };
+
+
 
 
   return (
@@ -70,7 +83,7 @@ function App() {
         onChange={onChange} 
         onCreate={onCreate}
       />
-      <UserList users={users} onRemove={onRemove} />
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle}/>
     </>
   );
 }

@@ -1,28 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function User({ user,onRemove, key, email }) {
+
+function User({ user, onRemove, onToggle }) {
+    const { username, email, id, active} = user;
+    useEffect(() => {
+        console.log('컴포넌트가 화면에 나타남');
+        return () => {
+            console.log('컴포넌트가 화면에서 사라짐');
+        }
+    }, []);
     return (
       <div>
-          {console.log(user)}
-        <b>{user}</b> <span>({email})</span>
-        <button onClick={() => onRemove(key)}>삭제</button>
+        <b 
+            style={{
+                color: active ? 'pink' : 'black',
+                cursor: 'pointer'
+            }}
+            onClick={() => onToggle(id)}
+        >
+            {username}
+        </b> 
+        &nbsp;
+        <span>[{email}]</span>
+        <button onClick={() => onRemove(id)}>삭제</button>
       </div>
     );
   }
-function UserList({ users, onRemove }) {
+function UserList({ users, onRemove, onToggle }) {
 
     return (
         <div>
-            {console.log(onRemove)}
            {
-               users.map(
-                   (user, index) => (
-                        <User 
-                            user={user.username} 
-                            key={user.id} 
-                            email = {user.email}
-                            onRemove={onRemove}
-                        />
+            users.map(
+                (user) => (
+                    <User 
+                        user={user} 
+                        key={user.id} 
+                        // email={user.email}
+                        onRemove={onRemove}
+                        onToggle={onToggle}
+                    />
                    )
                )
            }
