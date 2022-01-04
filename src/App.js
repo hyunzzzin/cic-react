@@ -18,7 +18,7 @@ function App() {
     const{ name, value } = e.target;
     setInputs({
       ...inputs,
-      [name]: value
+      [name] : value
     });
   };
   const [users,setUsers] = useState([
