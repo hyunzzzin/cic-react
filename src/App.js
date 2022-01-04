@@ -20,8 +20,8 @@ function App() {
       ...inputs,
       [name]: value
     });
-  }
-    const [users,setUsers] = useState([
+  };
+  const [users,setUsers] = useState([
       {
           id:1,
           username: 'anhyunjin',
@@ -36,7 +36,7 @@ function App() {
           id:3,
           username: 'asdslf',
           email: 'dfsgdsg@gmail.com'
-      }
+      },
   ]);
   
 
@@ -45,19 +45,20 @@ function App() {
   const onCreate = () => {
     const user = {
       id: nextId.current,
-      username,
-      email,
+      ...inputs,
     };
-    setUsers([...users, user]);
+    setUsers([users.concat(user)]);
     setInputs({
       username:'',
       email:''
     });
-
-    
     nextId.current += 1;
     console.log(user);
-  }
+  };
+
+  const onRemove = id => {
+    setUsers(users.filter(user => user.id !== id))
+  };
 
 
   return (
@@ -68,7 +69,7 @@ function App() {
         onChange={onChange} 
         onCreate={onCreate}
       />
-      <UserList users={users} />
+      <UserList users={users} onRemove={onRemove} />
     </>
   );
 }
