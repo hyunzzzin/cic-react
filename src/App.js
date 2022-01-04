@@ -8,20 +8,20 @@ import UserList from './UserList';
 function App() {
 
   const [inputs, setInputs] = useState({
-    username:'',
-    email:''
+    username: '',
+    email: '',
   });
 
-  const {username, email} = inputs;
+  const { username, email } = inputs;
 
-  const onChange = e=>{
-    const{name, value} = e.target;
+  const onChange = e =>{
+    const{ name, value } = e.target;
     setInputs({
       ...inputs,
-      [name]:value
+      [name]: value
     });
-  };
-    const users = [
+  }
+    const [users,setUsers] = useState([
       {
           id:1,
           username: 'anhyunjin',
@@ -37,19 +37,26 @@ function App() {
           username: 'asdslf',
           email: 'dfsgdsg@gmail.com'
       }
-  ];
-
+  ]);
+  
 
   const nextId = useRef(4);
 
-  const onCreate = () =>{
+  const onCreate = () => {
+    const user = {
+      id: nextId.current,
+      username,
+      email,
+    };
+    setUsers([...users, user]);
     setInputs({
       username:'',
       email:''
-    })
-    console.log(nextId.current);
+    });
+
+    
     nextId.current += 1;
-    console.log(inputs);
+    console.log(user);
   }
 
 
@@ -61,7 +68,7 @@ function App() {
         onChange={onChange} 
         onCreate={onCreate}
       />
-      <UserList users={users}/>
+      <UserList users={users} />
     </>
   );
 }
