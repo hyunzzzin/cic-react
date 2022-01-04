@@ -3,7 +3,9 @@ import './App.css';
 import CreateUser from './CreateUser';
 import UserList from './UserList';
 
-
+function countActiveUsers(users) {
+  console.log('활성 사용자 수를 세는중...');
+  }
 
 function App() {
 
@@ -51,7 +53,8 @@ function App() {
       username,
       email,
     };
-    setUsers([users.concat(user)]);
+
+    setUsers(users.concat(user));
     setInputs({
       username:'',
       email:''
