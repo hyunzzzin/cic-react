@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Counter from './Counter';
 
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+ReactDOM.render(<Counter />, document.getElementById('root'));
 //react
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
