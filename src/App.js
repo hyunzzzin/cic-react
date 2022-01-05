@@ -1,4 +1,4 @@
-import React,{ useRef, useState, useMemo, useCallback } from 'react';
+import React,{ useRef, useReducer, useMemo, useCallback } from 'react';
 import './App.css';
 import CreateUser from './CreateUser';
 import UserList from './UserList';
@@ -36,13 +36,24 @@ const initialState = {
 }
 
 function reducer(state, action) {
-  return state;
+  switch (action.type){
+    case 'CHANGE_INPUT':
+      return {
+        ...state,
+        inputs:{
+          ...state.inputs,
+          [action.name]:action.value
+        }
+      };
+      default:
+        throw new Error ('Unhandled action');
+  }
 }
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { users } = state;
-  const { usernamme, email } = state.inputs;
+  const { username, email } = state.inputs;
 
   const onChange = useCallback(e => {
     const { name, value } = e.target;
@@ -52,6 +63,18 @@ function App() {
       value
     })
   },[]);
+
+
+  const onCreate = useCallback(() =>{
+    dispatch({
+      type:'CREATE_USER',
+      user: {
+        id:1,
+        username,
+        email,
+      }
+    })
+  }, [username, email])
 
   return (
     <>
