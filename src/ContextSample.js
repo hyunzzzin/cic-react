@@ -3,7 +3,8 @@ import React, { createContext, useContext ,useState } from 'react';
 const MyContext = createContext('defaultValue');
 function Child() {
     const text = useContext(MyContext);
-    return <div>안녕하세요 ? {text}</div>
+    return <div>안녕하세요
+        ? {text}</div>
 }
 
 function Parent({ text }) {
