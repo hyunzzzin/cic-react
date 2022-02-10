@@ -4,7 +4,7 @@ const MyContext = createContext('defaultValue');
 function Child() {
     const text = useContext(MyContext);
     return <div>안녕하세요
-       f ? {text}</div>
+        ? {text}</div>
 }
 
 function Parent({ text }) {
