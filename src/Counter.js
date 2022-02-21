@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Template } from 'webpack';
+import { Download } from './stories/Input.stories';
+
 
 class Counter extends Component {
     
@@ -33,12 +36,18 @@ class Counter extends Component {
     }
     render(){
         return (
+            <>
             <div>
                 <h1>{this.state.counter}</h1>
                 <button onClick={this.handleIncrease}>+1</button>
                 <button onClick={this.handleDecrease}>-1</button>
                 <p>고정된 값 : {this.state.fixed}</p>
             </div>
+            <div>
+                
+                {Download}
+                </div>
+                </>
         );
     }
 }

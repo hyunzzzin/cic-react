@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
-
+import { Meta, Story } from "@storybook/react";
+import { Download } from './stories/Input.stories';
 
 // function Hello ({color, name, isSpecial }){
 //     return (
@@ -11,7 +12,7 @@ import React,{ Component } from 'react';
 //         </div>
 //     );
 // }
-class Hello extends Component {
+export class Hello extends Component {
     static defaultProps = {
         name:'이름없음',
     };
@@ -21,8 +22,10 @@ class Hello extends Component {
         return (
             <div style={{color}}>
                 {isSpecial && <b></b>}
-                ~안녕하세요 {name}
+                ~안녕하세요  {name}
+                {Download}
             </div>
+        
         );
     }
 }
@@ -31,5 +34,3 @@ class Hello extends Component {
 // Hello.defaultProps = {
 //     name: '이름없음'
 // };
-
-export default Hello;
