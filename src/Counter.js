@@ -41,7 +41,7 @@ class Counter extends Component {
                 <h1>{this.state.counter}</h1>
                 <button onClick={this.handleIncrease}>+1</button>
                 <button onClick={this.handleDecrease}>-1</button>
-                <p>고정된fsdfsd 값 : {this.state.fixed}</p>
+                <p>고정된fsdfsdfsd 값 : {this.state.fixed}</p>
             </div>
             <div>
                 
