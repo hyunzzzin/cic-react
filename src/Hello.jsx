@@ -22,7 +22,7 @@ class Hello extends Component {
         return (
             <div style={{color}}>
                 {isSpecial && <b></b>}
-                ~안녕~안녕 ~안녕하세요  {name}
+                ~안녕~안녕 ~안녕하dsadsa세요  {name}
                 {Download}
             </div>
         
